@@ -6,7 +6,8 @@ import 'package:todo_app/Screens/profile.dart';
 import 'package:todo_app/Screens/search.dart';
 
 class Navbar extends StatefulWidget {
-  const Navbar({super.key});
+  final String username;
+  const Navbar({super.key,required this.username});
 
   @override
   State<Navbar> createState() => _NavbarState();
@@ -14,15 +15,19 @@ class Navbar extends StatefulWidget {
 
 class _NavbarState extends State<Navbar> {
   int _selectedIndex = 0;
-
-  final List<Widget> _pages = [
-    HomeScreen(),
-    Calender(),
-    ProfileScreen(),
-  ];
-
+  late final List<Widget> _pages;
 
   @override
+  void initState() {
+    super.initState();
+    _pages = [
+      HomeScreen(username: widget.username),  
+      Calender(),
+      ProfileScreen(),
+    ];
+  }
+
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedIndex],

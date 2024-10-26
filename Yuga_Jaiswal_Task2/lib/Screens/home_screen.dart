@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todo_app/Components/task.dart';
+import 'package:intl/intl.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  final String username;
+  HomeScreen({required this.username});
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<Task> tasks = [];
+
+  void _addNewTask(Task task) {
+    setState(() {
+      tasks.add(task);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,9 +31,9 @@ class HomeScreen extends StatelessWidget {
           Stack(
             children: [
               Container(
-                height: 350,
+                height: 330,
                 width: double.infinity,
-                color: Color(0xFF1D4ED8),
+                color: Color.fromARGB(255, 29, 78, 216),
               ),
               Positioned(
                 top: 60,
@@ -26,163 +45,64 @@ class HomeScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              'Hello User',
-                              style: GoogleFonts.montserrat(
-                                  textStyle: TextStyle(
-                                      color: Colors.grey[500],
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600)),
-                            ),
-                         ],
+                        Text(
+                          'Hello ${widget.username}',
+                          style: GoogleFonts.montserrat(
+                              textStyle: TextStyle(
+                                  color: Colors.grey[500],
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600)),
                         ),
-                        Row(
-                          children: [
-                            GestureDetector(
-                                onTap: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) => SearchFoodScreen(),
-                                  //   ));
-                                },
-                                child: Icon(Icons.notifications, color: Colors.white, size: 30),
-                              ),
-                              SizedBox(width: 10),
-                          ],
-                        ),
+                        Icon(Icons.notifications, color: Colors.white, size: 30),
                       ],
                     ),
                     SizedBox(height: 5),
-                    Row(
-                      children: [
-                        Text(
-                           'Today Is Thursday, March 23',
-                             style: GoogleFonts.montserrat(
-                             textStyle: TextStyle(color: Colors.white,fontSize: 17, fontWeight: FontWeight.w600))),
-                      ],
+                    Text(
+                      'Today is ${DateFormat('EEEE, MMMM d').format(DateTime.now())}', 
+                      style: GoogleFonts.montserrat(
+                          textStyle: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w600)),
                     ),
-                    SizedBox(height: 20), // Add space before the ListView
+                    SizedBox(height: 20),
                     SizedBox(
-                      height: 200, // Set a specific height for the ListView
-                      child: ListView(
+                      height: 170,
+                      child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        children: [
-                          TaskCard(
-                            title: 'Karaoke Mobile App',
-                            priority: 'High Priority',
-                            progress: 0.5,
-                            dueDate: 'April 20, 2023',
-                            time: '10:00 AM',
-                            priorityColor: Colors.redAccent,
-                          ),
-                          SizedBox(width: 16), // Adjust width for spacing
-                          TaskCard(
-                            title: 'Fonto Desktop App',
-                            priority: 'Medium Priority',
-                            progress: 0.75,
-                            dueDate: 'March 25, 2023',
-                            time: '2:00 PM',
-                            priorityColor: Colors.orangeAccent,
-                          ),
-                        ],
+                        itemCount: tasks.length,
+                        itemBuilder: (context, index) {
+                          return TaskCard(
+                            title: tasks[index].title,
+                            description: tasks[index].description,
+                            priority: tasks[index].priority,
+                            dueDate: tasks[index].dueDate,
+                            time: tasks[index].time,
+                            priorityColor: tasks[index].priorityColor,
+                          );
+                        },
                       ),
-                    )
-                    
+                    ),
                   ],
                 ),
-              )
+              ),
             ],
-          )
+          ),
         ],
-      )
+      ),
     );
   }
 }
 
-
-
-
-
-
-
-
-
-// Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             SizedBox(height: 30), // Space for status bar
-//             Text(
-//               'Hello Stephen',
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 fontSize: 22,
-//                 fontWeight: FontWeight.bold,
-//               ),
-//             ),
-//             SizedBox(height: 8),
-//             Text(
-//               'Today Is Thursday, March 23',
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 fontSize: 16,
-//               ),
-//             ),
-//             SizedBox(height: 30),
-//             Expanded(
-//               child: ListView(
-//                 children: [
-//                   TaskCard(
-//                     title: 'Karaoke Mobile App',
-//                     priority: 'High Priority',
-//                     progress: 0.5,
-//                     dueDate: 'April 20, 2023',
-//                     time: '10:00 AM',
-//                     priorityColor: Colors.redAccent,
-//                   ),
-//                   SizedBox(height: 16),
-//                   TaskCard(
-//                     title: 'Fonto Desktop App',
-//                     priority: 'Medium Priority',
-//                     progress: 0.75,
-//                     dueDate: 'March 25, 2023',
-//                     time: '2:00 PM',
-//                     priorityColor: Colors.orangeAccent,
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             SizedBox(height: 20),
-//             Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//               children: [
-//                 FooterButton(label: 'All Task', isSelected: true),
-//                 FooterButton(label: 'On Going', isSelected: false),
-//                 FooterButton(label: 'Complete', isSelected: false),
-//                 FooterButton(label: 'Postponed', isSelected: false),
-//               ],
-//             ),
-//             SizedBox(height: 20),
-//           ],
-//         ),
-//       ),
-
 class TaskCard extends StatelessWidget {
   final String title;
+  final String description;
   final String priority;
-  final double progress;
   final String dueDate;
   final String time;
   final Color priorityColor;
 
   TaskCard({
     required this.title,
+    required this.description,
     required this.priority,
-    required this.progress,
     required this.dueDate,
     required this.time,
     required this.priorityColor,
@@ -202,13 +122,14 @@ class TaskCard extends StatelessWidget {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: priorityColor,
+                color: priorityColor.withOpacity(0.2),
                 borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: priorityColor)
               ),
               child: Text(
                 priority,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: priorityColor,
                   fontSize: 12,
                 ),
               ),
@@ -223,24 +144,19 @@ class TaskCard extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              'Create an application UI design for Karaoke...',
+              description,
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey,
               ),
             ),
             SizedBox(height: 8),
-            LinearProgressIndicator(
-              value: progress,
-              backgroundColor: Colors.grey.shade300,
-              color: Colors.blueAccent,
-            ),
-            SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(dueDate),
-                Text(time),
+                Row(children: [Icon(Icons.calendar_month_rounded),SizedBox(width: 5,),Text(dueDate)],),
+                Row(children: [Icon(FontAwesomeIcons.clock),SizedBox(width: 5,),Text(time)],)                                
+
               ],
             ),
           ],
@@ -250,32 +166,3 @@ class TaskCard extends StatelessWidget {
     );
   }
 }
-
-// class FooterButton extends StatelessWidget {
-//   final String label;
-//   final bool isSelected;
-
-//   FooterButton({required this.label, required this.isSelected});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         Text(
-//           label,
-//           style: TextStyle(
-//             color: isSelected ? Colors.white : Colors.white70,
-//             fontWeight: FontWeight.bold,
-//           ),
-//         ),
-//         SizedBox(height: 4),
-//         if (isSelected)
-//           Container(
-//             height: 4,
-//             width: 60,
-//             color: Colors.white,
-//           )
-//       ],
-//     );
-//   }
-// }
