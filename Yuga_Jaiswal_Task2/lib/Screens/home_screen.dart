@@ -43,11 +43,24 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     });
   }
 
-  void _deleteTask(Task task) {
+  void _deleteTask(Task task, {bool fromCompleted = false}) {
     setState(() {
-      tasks.remove(task);
+      if (fromCompleted) {
+      completedTasks.remove(task); 
+    } else {
+      tasks.remove(task); 
+    }
     });
   }
+
+  void _updateTask(Task updatedTask) {
+  setState(() {
+    int index = tasks.indexWhere((task) => task.title == updatedTask.title && task.dueDate == updatedTask.dueDate);
+    if (index != -1) {
+      tasks[index] = updatedTask;
+    }
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -109,9 +122,10 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                       Navigator.pop(context);
                                     },
                                     onDelete: () {
-                                      _deleteTask(tasks[index]);
+                                      _deleteTask(tasks[index], fromCompleted: false);
                                       Navigator.pop(context);
                                     },
+                                    onUpdate: _updateTask
                                   ),
                                 ),
                               );
@@ -190,9 +204,10 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     Navigator.pop(context);
                   },
                   onDelete: () {
-                    _deleteTask(taskList[index]);
+                    _deleteTask(taskList[index], fromCompleted: taskList == completedTasks);
                     Navigator.pop(context);
                   },
+                  onUpdate: _updateTask
                 ),
               ),
             );
@@ -235,7 +250,6 @@ class TaskCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
       child: Card(
         elevation: 5,
-        shadowColor: Colors.black,
         color: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: Padding(

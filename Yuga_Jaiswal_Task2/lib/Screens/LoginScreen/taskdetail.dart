@@ -3,19 +3,29 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_app/Components/task.dart';
 import 'package:todo_app/Components/text.dart';
+import 'package:todo_app/Screens/edit_task.dart';
 
 class TaskDetailScreen extends StatefulWidget {
   final Task task;
   final VoidCallback onComplete;
   final VoidCallback onDelete;
+  final Function(Task) onUpdate;
 
-  TaskDetailScreen({required this.task, required this.onComplete, required this.onDelete});
+  TaskDetailScreen({required this.task, required this.onComplete, required this.onDelete,required this.onUpdate});
 
   @override
   _TaskDetailScreenState createState() => _TaskDetailScreenState();
 }
 
 class _TaskDetailScreenState extends State<TaskDetailScreen> {
+  late Task task;
+
+  @override
+  void initState() {
+    super.initState();
+    task = widget.task;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +41,18 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.edit),
-            onPressed: widget.onDelete
+            onPressed: ()async {
+                final updatedTask = await Navigator.push<Task>(
+                  context,
+                  MaterialPageRoute(builder: (context) => EditTaskScreen(task: task)),
+                );
+                if (updatedTask != null) {
+                  setState(() {
+                    task = updatedTask; 
+                  });
+                  widget.onUpdate(task); 
+                }
+              }
           ),
           IconButton(
             icon: Icon(Icons.delete),
@@ -46,18 +67,18 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-                widget.task.title,
+                task.title,
                 style: GoogleFonts.gowunDodum(
                   textStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.w700,fontSize: 40),
                 )),
             SizedBox(height: 8),
             Row(
               children: [
-                _buildLabel(widget.task.priority, widget.task.priorityColor),
+                _buildLabel(task.priority, task.priorityColor),
               ],
             ),
             SizedBox(height: 16),
-            Text(widget.task.description, style: TextStyle(fontSize: 16)),
+            Text(task.description, style: TextStyle(fontSize: 16)),
             SizedBox(height: 16),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,7 +96,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                               fontSize: 16,
                             ),
                             SizedBox(height: 8,),
-                          Row(children: [Icon(Icons.calendar_month_rounded, size: 19), SizedBox(width: 5),Text(widget.task.dueDate,style:TextStyle(fontSize: 15),),],)
+                          Row(children: [Icon(Icons.calendar_month_rounded, size: 19), SizedBox(width: 5),Text(task.dueDate,style:TextStyle(fontSize: 15),),],)
                         ],
                       ),
                       
@@ -94,7 +115,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                               fontSize: 16,
                             ),
                             SizedBox(height: 8,),
-                          Row(children: [Icon(FontAwesomeIcons.clock, size: 19), SizedBox(width: 5),Text(widget.task.time,style:TextStyle(fontSize: 15),),],)
+                          Row(children: [Icon(FontAwesomeIcons.clock, size: 19), SizedBox(width: 5),Text(task.time,style:TextStyle(fontSize: 15),),],)
                         ],
                       ),
                       

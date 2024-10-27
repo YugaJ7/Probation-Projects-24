@@ -22,6 +22,8 @@ class _NavbarState extends State<Navbar> {
     _pages = [
       HomeScreen(username: widget.username),  
       Calender(),
+      SearchPage(),
+      ProfileScreen()
     ];
   }
  @override
@@ -31,21 +33,10 @@ class _NavbarState extends State<Navbar> {
       bottomNavigationBar: BottomNavigationBar(
             currentIndex: _selectedIndex,
             onTap:(int index) {
-                if (index == 2) { 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SearchPage()),
-                  );
-                } else if (index == 3) { 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ProfileScreen()),
-                  );
-                } else {
                   setState(() {
                     _selectedIndex = index;
                   });
-                }
+                
               },
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.white,
