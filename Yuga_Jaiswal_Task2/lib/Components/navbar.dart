@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/Screens/calender.dart';
-import 'package:todo_app/Screens/create.dart';
 import 'package:todo_app/Screens/home_screen.dart';
 import 'package:todo_app/Screens/profile.dart';
 import 'package:todo_app/Screens/search.dart';
@@ -23,29 +22,24 @@ class _NavbarState extends State<Navbar> {
     _pages = [
       HomeScreen(username: widget.username),  
       Calender(),
-      ProfileScreen(),
     ];
   }
-
  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedIndex],
-      bottomNavigationBar: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
             currentIndex: _selectedIndex,
             onTap:(int index) {
                 if (index == 2) { 
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => CreateTask()),
+                    MaterialPageRoute(builder: (context) => SearchPage()),
                   );
                 } else if (index == 3) { 
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SearchPage()),
+                    MaterialPageRoute(builder: (context) => ProfileScreen()),
                   );
                 } else {
                   setState(() {
@@ -76,30 +70,6 @@ class _NavbarState extends State<Navbar> {
               ),
             ],
           ),
-          Positioned(
-            top: -30,  
-            left: MediaQuery.of(context).size.width / 2 - 30,
-            child:SizedBox(
-                width: 60,
-                height: 60,
-                child: FittedBox(
-                  child: FloatingActionButton(
-                  onPressed:() {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CreateTask()),
-                        );
-                    },
-                    backgroundColor: Colors.blue,
-                    shape: CircleBorder(),
-                    child: const Icon(Icons.edit, color: Colors.white),
-                    elevation: 5,
-                  ),
-                ),
-              )
-            )
-        ],
-      ),
     );
   }
 }

@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_app/Components/task.dart';
 import 'package:intl/intl.dart';
+import 'package:todo_app/Screens/LoginScreen/taskdetail.dart';
+import 'package:todo_app/Screens/create.dart';
 
 class HomeScreen extends StatefulWidget {
   final String username;
@@ -12,12 +14,38 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   List<Task> tasks = [];
+  List<Task> completedTasks = [];
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 4, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   void _addNewTask(Task task) {
     setState(() {
       tasks.add(task);
+    });
+  }
+  void _markTaskAsComplete(Task task) {
+    setState(() {
+      tasks.remove(task);
+      completedTasks.add(task);
+    });
+  }
+
+  void _deleteTask(Task task) {
+    setState(() {
+      tasks.remove(task);
     });
   }
 
@@ -58,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(height: 5),
                     Text(
-                      'Today is ${DateFormat('EEEE, MMMM d').format(DateTime.now())}', 
+                      'Today is ${DateFormat('EEEE, MMMM d').format(DateTime.now())}',
                       style: GoogleFonts.montserrat(
                           textStyle: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w600)),
                     ),
@@ -69,13 +97,33 @@ class _HomeScreenState extends State<HomeScreen> {
                         scrollDirection: Axis.horizontal,
                         itemCount: tasks.length,
                         itemBuilder: (context, index) {
-                          return TaskCard(
-                            title: tasks[index].title,
-                            description: tasks[index].description,
-                            priority: tasks[index].priority,
-                            dueDate: tasks[index].dueDate,
-                            time: tasks[index].time,
-                            priorityColor: tasks[index].priorityColor,
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => TaskDetailScreen(
+                                    task: tasks[index],
+                                    onComplete: () {
+                                      _markTaskAsComplete(tasks[index]);
+                                      Navigator.pop(context);
+                                    },
+                                    onDelete: () {
+                                      _deleteTask(tasks[index]);
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                            child: TaskCard(
+                              title: tasks[index].title,
+                              description: tasks[index].description,
+                              priority: tasks[index].priority,
+                              dueDate: tasks[index].dueDate,
+                              time: tasks[index].time,
+                              priorityColor: tasks[index].priorityColor,
+                            ),
                           );
                         },
                       ),
@@ -85,8 +133,80 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: TabBar(
+              controller: _tabController,
+              labelColor: Colors.blue,
+              unselectedLabelColor: Colors.grey,
+              indicatorColor: Colors.blue,
+              tabs: [
+                Tab(text: "All Task"),
+                Tab(text: "Complete"),
+              ],
+            ),
+          ),
+          Flexible(
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                _buildTaskList(tasks),
+                _buildTaskList(completedTasks),
+              ],
+            ),
+          ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final newTask = await Navigator.push<Task>(
+            context,
+            MaterialPageRoute(builder: (context) => CreateTask()),
+          );
+          if (newTask != null) {
+            _addNewTask(newTask);
+          }
+        },
+        shape: CircleBorder(),
+        backgroundColor: Colors.blue,
+        child: Icon(Icons.add, color: Colors.white),
+      ),
+    );
+  }
+
+  Widget _buildTaskList(List<Task> taskList) {
+    return ListView.builder(
+      itemCount: taskList.length,
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => TaskDetailScreen(
+                  task: taskList[index],
+                  onComplete: () {
+                    _markTaskAsComplete(taskList[index]);
+                    Navigator.pop(context);
+                  },
+                  onDelete: () {
+                    _deleteTask(taskList[index]);
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+            );
+          },
+          child: TaskCard(
+            title: taskList[index].title,
+            description: taskList[index].description,
+            priority: taskList[index].priority,
+            dueDate: taskList[index].dueDate,
+            time: taskList[index].time,
+            priorityColor: taskList[index].priorityColor,
+          ),
+        );
+      },
     );
   }
 }
@@ -112,57 +232,63 @@ class TaskCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 330,
+      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
       child: Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              decoration: BoxDecoration(
-                color: priorityColor.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: priorityColor)
-              ),
-              child: Text(
-                priority,
-                style: TextStyle(
-                  color: priorityColor,
-                  fontSize: 12,
+        elevation: 5,
+        shadowColor: Colors.black,
+        color: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: priorityColor.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: priorityColor),
+                ),
+                child: Text(
+                  priority,
+                  style: TextStyle(color: priorityColor, fontSize: 12),
                 ),
               ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+              SizedBox(height: 8),
+              Text(
+                title,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              description,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey,
+              SizedBox(height: 8),
+              Text(
+                description,
+                style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
-            ),
-            SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(children: [Icon(Icons.calendar_month_rounded),SizedBox(width: 5,),Text(dueDate)],),
-                Row(children: [Icon(FontAwesomeIcons.clock),SizedBox(width: 5,),Text(time)],)                                
-
-              ],
-            ),
-          ],
+              SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.calendar_month_rounded, size: 16),
+                      SizedBox(width: 5),
+                      Text(dueDate),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(FontAwesomeIcons.clock, size: 16),
+                      SizedBox(width: 5),
+                      Text(time),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
-    )
     );
   }
 }

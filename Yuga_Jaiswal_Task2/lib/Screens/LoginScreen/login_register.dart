@@ -24,11 +24,9 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
     } else {
       return Register(
         onTap: (String username) {
-          // Pass the username from Register to Login
           setState(() {
             showLogin = !showLogin;
           });
-          // Once the registration is done, show login with the username
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -38,7 +36,7 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
                     showLogin = !showLogin;
                   });
                 },
-                username: username, // Pass the username to the Login page
+                username: username, 
               ),
             ),
           );
