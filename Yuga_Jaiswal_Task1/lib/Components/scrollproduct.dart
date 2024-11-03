@@ -4,7 +4,7 @@ import 'package:ecommerce_app/Screens/product_detail.dart';
 class scrollproduct extends StatelessWidget {
   final Product product;
   final List<Product> allProducts;
-  scrollproduct({required this.product, required this.allProducts});
+  const scrollproduct({super.key, required this.product, required this.allProducts});
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +21,9 @@ class scrollproduct extends StatelessWidget {
             Image.asset(product.image, height: 100), 
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Text(product.name, style: TextStyle(fontSize: 16)),
+              child: Text(product.name, style: const TextStyle(fontSize: 16)),
             ),
-            Text(product.price, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text(product.price, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: ElevatedButton(
@@ -33,7 +33,7 @@ class scrollproduct extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => ProductDetail(
                         product: product,allProducts: allProducts)));},
-                child: Text('Free shipping'),
+                child: const Text('Free shipping'),
               ),
             ),
           ],

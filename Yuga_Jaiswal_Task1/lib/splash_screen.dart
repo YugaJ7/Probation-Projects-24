@@ -4,6 +4,8 @@ import 'dart:async';
 import 'package:ecommerce_app/Components/navbar.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -12,9 +14,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
         Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext context) => Navbar()));
+        MaterialPageRoute(builder: (BuildContext context) => const Navbar()));
     });
   }
 
@@ -24,14 +26,14 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Colors.blue, Colors.purple],
             begin: Alignment.topRight,
             end: Alignment.bottomLeft
             )
         ),
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
               Icon(Icons.shopping_cart_outlined,size: 80,color: Colors.white,),

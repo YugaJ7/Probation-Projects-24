@@ -13,7 +13,7 @@ class Searchbar extends StatelessWidget implements PreferredSizeWidget{
         title: TextFormField(
              decoration: InputDecoration(
                   hintText: 'Search products',
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(40),
                       borderSide: BorderSide.none,
@@ -26,14 +26,14 @@ class Searchbar extends StatelessWidget implements PreferredSizeWidget{
           ),
           actions: [
             Ink(
-              padding: EdgeInsets.fromLTRB(0.0,0.0,10.0,0.0),
+              padding: const EdgeInsets.fromLTRB(0.0,0.0,10.0,0.0),
               child: IconButton(
-                icon: Icon(Icons.notifications_outlined),
+                icon: const Icon(Icons.notifications_outlined),
                 color: Colors.grey,
                 iconSize: 40.0,
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Notify()));
+                      MaterialPageRoute(builder: (context) => const Notify()));
             },
           ),
         ),
@@ -43,5 +43,5 @@ class Searchbar extends StatelessWidget implements PreferredSizeWidget{
   }
   
   @override
-Size get preferredSize => Size.fromHeight(kToolbarHeight);
+Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

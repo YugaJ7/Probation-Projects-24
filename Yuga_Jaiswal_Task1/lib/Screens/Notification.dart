@@ -6,11 +6,11 @@ class Notify extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notification'),
+        title: const Text('Notification'),
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
@@ -21,22 +21,22 @@ class Notify extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
               child: TextButton(
                 onPressed: (){},
-                child: Item(title: "Your order will be \ndelivered by tomorrow", image: 'assets/images/macbook.png'),
                 style: TextButton.styleFrom(
                        backgroundColor: Colors.grey[200],
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                         ),
+                child: Item(title: "Your order will be \ndelivered by tomorrow", image: 'assets/images/macbook.png'),
                 ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
               child: TextButton(
                 onPressed: (){},
-                child: Item(title: "40% OFF on Philip\nMixer", image: 'assets/images/mixer.jpg'),
                 style: TextButton.styleFrom(
                        backgroundColor: Colors.grey[200],
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                         ),
+                child: Item(title: "40% OFF on Philip\nMixer", image: 'assets/images/mixer.jpg'),
                 
                   ),
             ),
@@ -51,7 +51,7 @@ class Item extends StatelessWidget {
   final String title;
   final String image;
 
-  const Item({
+  const Item({super.key, 
     required this.title,
     required this.image,
   });
@@ -73,11 +73,11 @@ class Item extends StatelessWidget {
                      )
                   ),
             ),
-            SizedBox(width: 30),
+            const SizedBox(width: 30),
             Text(title,style: TextStyle(fontSize: 16,color: Colors.grey[700]),),
          ],
         ),
-        Row(
+        const Row(
           children: [
              Icon(Icons.arrow_forward_ios_rounded,size: 30,color: Colors.grey,),
            ]

@@ -14,7 +14,7 @@ const List<Widget> UPI = [
 class Buy extends StatefulWidget {
   final Product product;
 
-  Buy({required this.product});
+  const Buy({super.key, required this.product});
 
   @override
   _BuyState createState() => _BuyState();
@@ -28,7 +28,7 @@ class _BuyState extends State<Buy> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           'Checkout',
           style: TextStyle(color: Colors.black),
         ),
@@ -37,33 +37,33 @@ class _BuyState extends State<Buy> {
       //bottomNavigationBar: Navbar(),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
                   Image.asset(widget.product.image, height: 80),
-                  SizedBox(width: 16),
+                  const SizedBox(width: 16),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         widget.product.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Text(
                         widget.product.price,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           color: Colors.orange,
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Including taxes and duties',
                         style: TextStyle(color: Colors.grey, fontSize: 12),
                       ),
@@ -71,12 +71,12 @@ class _BuyState extends State<Buy> {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 'Select your payment method',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 child: ToggleButtons(
@@ -101,7 +101,7 @@ class _BuyState extends State<Buy> {
                   //padding: EdgeInsets.symmetric(vertical: 8.0),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -109,9 +109,9 @@ class _BuyState extends State<Buy> {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orange,
-                    padding: EdgeInsets.symmetric(vertical: 16),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Continue',
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),

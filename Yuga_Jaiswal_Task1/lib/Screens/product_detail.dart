@@ -5,7 +5,7 @@ import 'package:ecommerce_app/Components/product.dart';
 class ProductDetail extends StatelessWidget {
   final Product product;
   final List<Product> allProducts;
-  const ProductDetail({required this.product, required this.allProducts});
+  const ProductDetail({super.key, required this.product, required this.allProducts});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class ProductDetail extends StatelessWidget {
           title: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Text(product.name,
-              style: TextStyle(color: Colors.black, fontSize: 18),
+              style: const TextStyle(color: Colors.black, fontSize: 18),
             ),
           ),
           centerTitle: true,
@@ -22,10 +22,10 @@ class ProductDetail extends StatelessWidget {
           leading: Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle),
               child: IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.black),
+                icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -36,11 +36,11 @@ class ProductDetail extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 16.0),
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 child: IconButton(
-                  icon: Icon(Icons.share, color: Colors.black, size: 20,),
+                  icon: const Icon(Icons.share, color: Colors.black, size: 20,),
                   onPressed: () {},
                 ),
               ),
@@ -64,18 +64,18 @@ class ProductDetail extends StatelessWidget {
                 children: [
                   Text(
                     product.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         product.price,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 22,
                           color: Colors.orange,
                           fontWeight: FontWeight.bold,
@@ -83,12 +83,12 @@ class ProductDetail extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 5),
-                  Text(
+                  const SizedBox(height: 5),
+                  const Text(
                     'Including taxes and duties',
                     style: TextStyle(color: Colors.grey),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),
@@ -102,12 +102,12 @@ class ProductDetail extends StatelessWidget {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
-                        padding: EdgeInsets.symmetric(vertical: 13),
+                        padding: const EdgeInsets.symmetric(vertical: 13),
                       ),
-                      child: Text('Add to Cart',style: TextStyle(color: Colors.white, fontSize: 15)),
+                      child: const Text('Add to Cart',style: TextStyle(color: Colors.white, fontSize: 15)),
                     ),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -118,9 +118,9 @@ class ProductDetail extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orange,
-                        padding: EdgeInsets.symmetric(vertical: 13),
+                        padding: const EdgeInsets.symmetric(vertical: 13),
                       ),
-                      child: Text('Buy Now',style: TextStyle(color: Colors.white, fontSize: 15),),
+                      child: const Text('Buy Now',style: TextStyle(color: Colors.white, fontSize: 15),),
                     ),
                   ),
                 ],

@@ -22,28 +22,28 @@ class ProfilePage extends StatelessWidget {
        // bottomNavigationBar: Navbar(),
         body: ListView(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 200,
               width: 200,
               child: CircleAvatar(
                 backgroundImage: AssetImage('asssets/images/self.jpg'),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
               child: TextButton(
-                onPressed: (){},
-                child:ProfileItem(
-                  icon: Icons.person_outline_rounded,
-                  title: "My Account",
-                ), 
+                onPressed: (){}, 
                 style: TextButton.styleFrom(
-                       padding: EdgeInsets.symmetric(vertical: 15),
+                       padding: const EdgeInsets.symmetric(vertical: 15),
                        iconColor: Colors.orangeAccent,
                         backgroundColor: Colors.grey[200],
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                         ),
+                child:ProfileItem(
+                  icon: Icons.person_outline_rounded,
+                  title: "My Account",
+                ),
                 
                   ),
             ),
@@ -52,18 +52,18 @@ class ProfilePage extends StatelessWidget {
               child: TextButton(
                 onPressed: (){
                   Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Notify()));
-                },
-                child:ProfileItem(
-                  icon: Icons.notifications_none_outlined,
-                  title: "Notification",
-                ), 
+                  MaterialPageRoute(builder: (context) => const Notify()));
+                }, 
                 style: TextButton.styleFrom(
-                       padding: EdgeInsets.symmetric(vertical: 15),
+                       padding: const EdgeInsets.symmetric(vertical: 15),
                        iconColor: Colors.orangeAccent,
                         backgroundColor: Colors.grey[200],
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                         ),
+                child:ProfileItem(
+                  icon: Icons.notifications_none_outlined,
+                  title: "Notification",
+                ),
                 
                   ),
             ),
@@ -74,16 +74,16 @@ class ProfilePage extends StatelessWidget {
                   Navigator.push(context,
                   MaterialPageRoute(builder: (context) => Settings()));
                 },
-                child: ProfileItem(
-                  icon: Icons.settings_outlined,
-                  title: "Settings",
-                ),
                 style: TextButton.styleFrom(
-                       padding: EdgeInsets.symmetric(vertical: 15),
+                       padding: const EdgeInsets.symmetric(vertical: 15),
                        iconColor: Colors.orangeAccent,
                         backgroundColor: Colors.grey[200],
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                         ),
+                child: ProfileItem(
+                  icon: Icons.settings_outlined,
+                  title: "Settings",
+                ),
                 
                   ),
             ),
@@ -92,18 +92,18 @@ class ProfilePage extends StatelessWidget {
               child: TextButton(
                 onPressed: (){
                   Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HelpCenter()));
+                  MaterialPageRoute(builder: (context) => const HelpCenter()));
                 },
-                child: ProfileItem(
-                  icon: Icons.help_outline_rounded,
-                  title: "Help Center",
-                ),
                 style: TextButton.styleFrom(
-                       padding: EdgeInsets.symmetric(vertical: 15),
+                       padding: const EdgeInsets.symmetric(vertical: 15),
                        iconColor: Colors.orangeAccent,
                         backgroundColor: Colors.grey[200],
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                         ),
+                child: ProfileItem(
+                  icon: Icons.help_outline_rounded,
+                  title: "Help Center",
+                ),
                 
                   ),
             )
@@ -118,7 +118,7 @@ class ProfileItem extends StatelessWidget {
   final IconData icon;
   final String title;
 
-  const ProfileItem({
+  const ProfileItem({super.key, 
     required this.icon,
     required this.title,
   });
@@ -130,13 +130,13 @@ class ProfileItem extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          SizedBox(width: 15),
+                          const SizedBox(width: 15),
                           Icon(icon,size: 30),
-                          SizedBox(width: 75), 
-                          Text(title,style: TextStyle(fontSize: 18,color: Colors.black),),
+                          const SizedBox(width: 75), 
+                          Text(title,style: const TextStyle(fontSize: 18,color: Colors.black),),
                         ],
                       ),
-                      Row(
+                      const Row(
                         children: [
                           Icon(Icons.arrow_forward_ios_rounded,size: 30,color: Colors.grey,),
                           SizedBox(width: 15),

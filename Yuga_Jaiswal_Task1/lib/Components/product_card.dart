@@ -23,7 +23,7 @@ class _ProductCardState extends State<ProductCard> {
       ),
       child: Column(
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(padding: EdgeInsets.fromLTRB(0.0, 10.0, 5.0, 0.0)),
@@ -39,16 +39,16 @@ class _ProductCardState extends State<ProductCard> {
             child: Image.asset(widget.product.image, fit: BoxFit.contain),
             ),
             Text(
-              widget.product.name, style:TextStyle(fontSize: 18,fontWeight: FontWeight.bold)
+              widget.product.name, style:const TextStyle(fontSize: 18,fontWeight: FontWeight.bold)
             ),
-            Text(widget.product.price,style:TextStyle(fontSize: 16,fontWeight: FontWeight.normal)),
+            Text(widget.product.price,style:const TextStyle(fontSize: 16,fontWeight: FontWeight.normal)),
             ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
                MaterialPageRoute(builder: (BuildContext context) => ProductDetail(product: widget.product, allProducts: MyProduct.allProducts,)));
               },
-            child: Text('Free Shipping'),
+            child: const Text('Free Shipping'),
             )
             
         ],

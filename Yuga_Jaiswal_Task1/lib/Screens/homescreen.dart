@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Searchbar(), 
+      appBar: const Searchbar(), 
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
 
@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   items: imgList
                   .map((item) => Container(
-                    padding: EdgeInsets.fromLTRB(5.0,10.0,5.0,10.0),
+                    padding: const EdgeInsets.fromLTRB(5.0,10.0,5.0,10.0),
                     child: Container(
                       width: double.infinity,
                       height: 180,
@@ -86,68 +86,68 @@ class HomeScreen extends StatelessWidget {
                       onPressed: (){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (BuildContext context) => FashionPage())); 
-                      }, 
+                          MaterialPageRoute(builder: (BuildContext context) => const FashionPage())); 
+                      },
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        foregroundColor: Colors.black87,
+                        minimumSize: const Size(88, 36),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        )
+                      ), 
                       child: Text('Fashion'),
-                      style: OutlinedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        foregroundColor: Colors.black87,
-                        minimumSize: Size(88, 36),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                        )
-                      ),
                     ),
-                    Padding(padding: EdgeInsets.only(right:12.0)),
+                    const Padding(padding: EdgeInsets.only(right:12.0)),
                     OutlinedButton(
                       onPressed: (){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-                      }, 
+                          MaterialPageRoute(builder: (BuildContext context) => const HomePage()));
+                      },
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        foregroundColor: Colors.black87,
+                        minimumSize: const Size(88, 36),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        )
+                      ), 
                       child: Text('Home'),
-                      style: OutlinedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        foregroundColor: Colors.black87,
-                        minimumSize: Size(88, 36),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                        )
-                      ),
                     ),
-                    Padding(padding: EdgeInsets.only(right:12.0)),
+                    const Padding(padding: EdgeInsets.only(right:12.0)),
                     OutlinedButton(
                       onPressed: (){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (BuildContext context) => MobilePage()));
-                      }, 
+                          MaterialPageRoute(builder: (BuildContext context) => const MobilePage()));
+                      },
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        foregroundColor: Colors.black87,
+                        minimumSize: const Size(88, 36),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        )
+                      ), 
                       child: Text('Mobiles'),
-                      style: OutlinedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        foregroundColor: Colors.black87,
-                        minimumSize: Size(88, 36),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                        )
-                      ),
                     ),
-                    Padding(padding: EdgeInsets.only(right:12.0)),
+                    const Padding(padding: EdgeInsets.only(right:12.0)),
                     OutlinedButton(
                       onPressed: (){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (BuildContext context) => ElectronicsPage()));
-                      }, 
-                      child: Text('Electronics'),
+                          MaterialPageRoute(builder: (BuildContext context) => const ElectronicsPage()));
+                      },
                       style: OutlinedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         foregroundColor: Colors.black87,
-                        minimumSize: Size(88, 36),
+                        minimumSize: const Size(88, 36),
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                         )
-                      ),
+                      ), 
+                      child: Text('Electronics'),
                     ),
                     
                   ],
@@ -218,7 +218,7 @@ class HomeScreen extends StatelessWidget {
             //Hot Sales Text
             Container(
               padding: const EdgeInsets.fromLTRB(10.0,0.0,10.0,10.0),
-              child: Text(
+              child: const Text(
                 'Hot sales',
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
@@ -244,7 +244,7 @@ class HomeScreen extends StatelessWidget {
             //Recent Text
             Container(
               padding: const EdgeInsets.fromLTRB(10.0,0.0,10.0,10.0),
-              child: Text(
+              child: const Text(
                 'Recent Viewed',
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),

@@ -6,11 +6,11 @@ class HelpCenter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('24x7 Customer Support'),
+        title: const Text('24x7 Customer Support'),
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
@@ -20,19 +20,19 @@ class HelpCenter extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Hi, how we can help you?',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
 
             TextField(
               decoration: InputDecoration(
                 hintText: 'Search',
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -42,10 +42,10 @@ class HelpCenter extends StatelessWidget {
                 fillColor: Colors.grey[200],
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Expanded(
               child: ListView(
-                children: [
+                children: const [
                   HelpCenterItem(
                     icon: Icons.grid_view_rounded,
                     title: 'General',
@@ -86,7 +86,7 @@ class HelpCenterItem extends StatelessWidget {
   final String subtitle;
   final Color iconColor;
 
-  const HelpCenterItem({
+  const HelpCenterItem({super.key, 
     required this.icon,
     required this.title,
     required this.subtitle,
@@ -100,6 +100,12 @@ class HelpCenterItem extends StatelessWidget {
               child: TextButton(
                 onPressed: (){
                 },
+                style: TextButton.styleFrom(
+                       padding: const EdgeInsets.symmetric(vertical: 0),
+                       iconColor: iconColor,
+                        backgroundColor: Colors.grey[200],
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                        ),
                 child: ListTile(
                     leading: CircleAvatar(
                         backgroundColor: iconColor.withOpacity(0.2),
@@ -108,12 +114,6 @@ class HelpCenterItem extends StatelessWidget {
                     title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
                   subtitle: Text(subtitle),
                 ),
-                style: TextButton.styleFrom(
-                       padding: EdgeInsets.symmetric(vertical: 0),
-                       iconColor: iconColor,
-                        backgroundColor: Colors.grey[200],
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                        ),
                 
                   ),
             );

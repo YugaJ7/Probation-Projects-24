@@ -15,10 +15,10 @@ class _NavbarState extends State<Navbar> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    HomeScreen(),
-    CartPage(),
-    Notify(),
-    ProfilePage(),
+    const HomeScreen(),
+    const CartPage(),
+    const Notify(),
+    const ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {

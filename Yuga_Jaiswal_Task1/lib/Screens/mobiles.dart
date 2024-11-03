@@ -11,7 +11,7 @@ class MobilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Searchbar(),
+      appBar: const Searchbar(),
       backgroundColor: Colors.white,
       //bottomNavigationBar: Navbar(),
       body: Column(
@@ -28,7 +28,7 @@ class MobilePage extends StatelessWidget {
                     width:250 , 
                     color: Colors.orange,
                   ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Expanded(
             child: Container(
               padding: const EdgeInsets.fromLTRB(15.0,0.0,15.0,10.0),
