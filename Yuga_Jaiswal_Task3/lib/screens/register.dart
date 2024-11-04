@@ -1,0 +1,272 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:quiz_app/screens/home_screen.dart';
+import 'package:quiz_app/screens/login.dart';
+import 'package:quiz_app/screens/util.dart';
+
+class Register extends StatefulWidget {
+  //final Function(String) onTap;
+  const Register({
+    super.key,
+   // required this.onTap,
+  });
+
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+
+bool obscureText = true;
+  String email = '';
+  String password = '';
+  String username = '';
+Future <void> register() async{
+  if (formKey.currentState!.validate()){
+      try{
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: email,
+            password: password,
+          );
+      await FirebaseFirestore.instance.collection('users').doc(userCredential.user?.uid).set({
+        'username': username,
+        'email' : email,
+      }
+      );
+
+      Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HomeScreen()));
+    }on FirebaseAuthException catch(e){
+      showErrorMessage(e.code);
+    }
+  }
+}
+
+  void showErrorMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+            backgroundColor: Color.fromARGB(255, 245, 240, 255),
+            title: Text('Error'),
+            content: Text(message),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK',
+                    style: TextStyle(color: Colors.black)),
+              )
+            ]
+          );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: false,
+      body: Stack(
+        children: [
+        Positioned.fill(
+          child: Image.asset(
+            'assets/splash_back.jpg',
+            fit: BoxFit.cover
+          ),
+        ),
+        ListView(
+          padding: const EdgeInsets.all(16.0), 
+        children: [
+          Form(
+            key: formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start, 
+              children: [
+              SizedBox(height: 10),
+                    Center(
+                      child: Image.asset(
+                        'assets/splash_front.png', 
+                        height: 150,
+                        width: MediaQuery.of(context).size.width,
+                      ),
+                    ),
+              CustomText(
+                text: "Create your new \naccount",
+                fontStyle: null,
+                color: Colors.black,
+                fontweigth: FontWeight.bold,
+                fontSize: 40,
+              ),
+              SizedBox(height: 10),
+              CustomText(
+                text: "Create an account to begin the fun",
+                fontStyle: null,
+                color: Colors.grey,
+                fontweigth: null,
+                fontSize: 16,
+              ),
+              SizedBox(height: 10),
+              CustomText(
+                text: "Username",
+                fontStyle: null,
+                color: Colors.black,
+                fontweigth: null,
+                fontSize: 16,
+              ),
+              SizedBox(height: 5),
+              TextField(
+                onChanged: (value)=>username=value,
+                style: const TextStyle(color: Colors.black),
+                decoration: InputDecoration(
+                    fillColor: Color.fromRGBO(196, 196, 196, 0.2),
+                    filled: true,
+                    hintText: "Enter Your Name",
+                    hintStyle: const TextStyle(color: Colors.grey),
+                    enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(color: Colors.black),
+                          ),
+                    focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(color: Colors.black),
+                          ),),
+              ),
+              SizedBox(height: 10),
+              CustomText(
+                text: "Email Address",
+                fontStyle: null,
+                color: Colors.black,
+                fontweigth: null,
+                fontSize: 16,
+              ),
+              SizedBox(height: 5),
+              TextFormField(
+                controller: emailController,
+                onChanged: (value) => email = value,
+                validator: (value) => !EmailValidator.validate(value!, true)
+                    ? 'Not a valid email.'
+                    : null,
+                style: const TextStyle(color: Colors.black),
+                decoration: InputDecoration(
+                    fillColor: Color.fromRGBO(196, 196, 196, 0.2),
+                    filled: true,
+                    hintText: "Enter Your Email Address",
+                    hintStyle: const TextStyle(color: Colors.grey),
+                    enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(color: Colors.black),
+                          ),
+                    focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(color: Colors.black),
+                          ),),
+              ),
+              SizedBox(height: 10),
+              CustomText(
+                text: "Password",
+                fontStyle: null,
+                color: Colors.black,
+                fontweigth: null,
+                fontSize: 16,
+              ),
+              SizedBox(height: 5),
+              TextField(
+                onChanged: (value) => password = value,
+                obscureText: obscureText,
+                style: const TextStyle(color: Colors.black),
+                decoration: InputDecoration(
+                    fillColor: Color.fromRGBO(196, 196, 196, 0.2),
+                    filled: true,
+                    hintText: "Password",
+                    hintStyle: const TextStyle(color: Colors.grey),
+                    enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(color: Colors.black),
+                          ),
+                    focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(color: Colors.black),
+                          ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        obscureText ? Icons.visibility_off : Icons.visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          obscureText = !obscureText;
+                        });
+                      },
+                    )
+                  ),
+              ),
+              SizedBox(height: 25),
+              ElevatedButton(
+                onPressed: register,
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 142),
+                  backgroundColor: Color.fromARGB(255, 148, 84, 24),
+                ),
+                child: Text(
+                  'Let\'s Play',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              ),
+              SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Or sign in with',style: TextStyle(fontSize: 15,color: Colors.black)),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                            'assets/g.png', 
+                            width: 60,  
+                            height: 50,
+                          ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Have an account?",style: TextStyle(fontSize: 15,color: Colors.black)),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => Login()));
+                    },
+                    child: Text(
+                      'Sign In',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 148, 84, 24),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ]
+                    ),
+          ),
+        ]
+        ),
+  ],
+      ),
+    );
+  }
+}
