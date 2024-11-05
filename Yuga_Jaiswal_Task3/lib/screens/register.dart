@@ -7,11 +7,9 @@ import 'package:quiz_app/screens/login.dart';
 import 'package:quiz_app/screens/util.dart';
 
 class Register extends StatefulWidget {
-  //final Function(String) onTap;
   const Register({
     super.key,
-   // required this.onTap,
-  });
+   });
 
   @override
   State<Register> createState() => _RegisterState();
@@ -79,7 +77,7 @@ Future <void> register() async{
         children: [
         Positioned.fill(
           child: Image.asset(
-            'assets/splash_back.jpg',
+            'assets/splash_back.png',
             fit: BoxFit.cover
           ),
         ),
@@ -91,11 +89,11 @@ Future <void> register() async{
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start, 
               children: [
-              SizedBox(height: 10),
+             SizedBox(height: 30),
                     Center(
                       child: Image.asset(
                         'assets/splash_front.png', 
-                        height: 150,
+                        height: 100,
                         width: MediaQuery.of(context).size.width,
                       ),
                     ),
@@ -133,11 +131,11 @@ Future <void> register() async{
                     hintStyle: const TextStyle(color: Colors.grey),
                     enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.black),
+                            borderSide: const BorderSide(color: Colors.transparent),
                           ),
                     focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.black),
+                            borderSide: const BorderSide(color: Colors.transparent),
                           ),),
               ),
               SizedBox(height: 10),
@@ -163,11 +161,11 @@ Future <void> register() async{
                     hintStyle: const TextStyle(color: Colors.grey),
                     enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.black),
+                            borderSide: const BorderSide(color: Colors.transparent),
                           ),
                     focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.black),
+                            borderSide: const BorderSide(color: Colors.transparent),
                           ),),
               ),
               SizedBox(height: 10),
@@ -190,11 +188,11 @@ Future <void> register() async{
                     hintStyle: const TextStyle(color: Colors.grey),
                     enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.black),
+                            borderSide: const BorderSide(color: Colors.transparent),
                           ),
                     focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.black),
+                            borderSide: const BorderSide(color: Colors.transparent),
                           ),
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -209,17 +207,20 @@ Future <void> register() async{
                   ),
               ),
               SizedBox(height: 25),
-              ElevatedButton(
-                onPressed: register,
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 142),
-                  backgroundColor: Color.fromARGB(255, 148, 84, 24),
-                ),
-                child: Text(
-                  'Let\'s Play',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
-              ),
+              SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: register,
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 15),
+                        backgroundColor: Color(0xFF4E42A9),
+                      ),
+                      child: Text(
+                        'Let\'s Play',
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                    ),
+                  ),
               SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -254,7 +255,7 @@ Future <void> register() async{
                     child: Text(
                       'Sign In',
                       style: TextStyle(
-                        color: Color.fromARGB(255, 148, 84, 24),
+                        color: Color.fromARGB(255, 23, 9, 133),
                       ),
                     ),
                   ),

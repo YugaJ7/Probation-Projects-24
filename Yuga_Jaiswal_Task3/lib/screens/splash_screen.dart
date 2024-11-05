@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
     void initState() {
     super.initState();
-    Timer(const Duration(milliseconds: 500), () {
+    Timer(const Duration(seconds: 2), () {
         Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (BuildContext context) => AuthPage()));
     });
@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
             height: MediaQuery.of(context).size.height,
             width:  MediaQuery.of(context).size.width,
             child: Image.asset(
-              "assets/splash_back.jpg",
+              "assets/splash_back.png",
               fit: BoxFit.cover,
             ),
           ),

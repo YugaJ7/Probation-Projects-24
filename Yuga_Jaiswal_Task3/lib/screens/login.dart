@@ -57,12 +57,12 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Positioned.fill(
           child: Image.asset(
-              'assets/splash_back.jpg',
+              'assets/login_back.png',
               fit: BoxFit.cover
             ),
           ),
@@ -76,7 +76,7 @@ class _LoginState extends State<Login> {
                   Center(
                     child: Image.asset(
                       'assets/splash_front.png', 
-                      height: 150,
+                      height: MediaQuery.of(context).size.height/7,
                       width: MediaQuery.of(context).size.width,
                     ),
                   ),
@@ -115,11 +115,11 @@ class _LoginState extends State<Login> {
                       prefixIcon: const Icon(Icons.mail),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.black),
+                          borderSide: const BorderSide(color: Colors.transparent),
                         ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.black),
+                          borderSide: const BorderSide(color: Colors.transparent),
                         ),
                     ),
                 ),
@@ -144,11 +144,11 @@ class _LoginState extends State<Login> {
                       prefixIcon: Icon(Icons.key),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.black),
+                          borderSide: const BorderSide(color: Colors.transparent),
                         ),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.black),
+                          borderSide: const BorderSide(color: Colors.transparent),
                         ),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -170,20 +170,22 @@ class _LoginState extends State<Login> {
                       onPressed: () {},
                       child: Text(
                         'Forgot password?',
-                        style: TextStyle(color: Color.fromARGB(255, 148, 84, 24), fontSize: 15),
+                        style: TextStyle(color: Color.fromARGB(255, 23, 9, 133), fontSize: 15),
                       ),
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: login,
-                    style: ElevatedButton.styleFrom(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 15, horizontal: 142),
-                      backgroundColor: Color.fromARGB(255, 148, 84, 24),
-                    ),
-                    child: Text(
-                      'Let\'s Play',
-                      style: TextStyle(fontSize: 18, color: Colors.white),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: login,
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 15),
+                        backgroundColor: Color(0xFF4E42A9),
+                      ),
+                      child: Text(
+                        'Let\'s Play',
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
                     ),
                   ),
                   SizedBox(height: 15),
@@ -223,7 +225,7 @@ class _LoginState extends State<Login> {
                         child: Text(
                           'Register',
                           style: TextStyle(
-                              color: Color.fromARGB(255,  148, 84, 24),),
+                              color: Color.fromARGB(255, 23, 9, 133),),
                         ),
                       ),
                     ],
