@@ -83,7 +83,7 @@ class _LoginState extends State<Login> {
                 CustomText(
                   text: "Login to your \naccount.",
                   fontStyle: null,
-                  color: Colors.black,
+                  color: Colors.black87,
                   fontweigth: FontWeight.bold,
                   fontSize: 40,
                 ),

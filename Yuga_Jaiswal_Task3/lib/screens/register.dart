@@ -77,7 +77,7 @@ Future <void> register() async{
         children: [
         Positioned.fill(
           child: Image.asset(
-            'assets/splash_back.png',
+            'assets/login_back.png',
             fit: BoxFit.cover
           ),
         ),
@@ -100,7 +100,7 @@ Future <void> register() async{
               CustomText(
                 text: "Create your new \naccount",
                 fontStyle: null,
-                color: Colors.black,
+                color: Colors.black87,
                 fontweigth: FontWeight.bold,
                 fontSize: 40,
               ),
