@@ -67,10 +67,12 @@ class _LoginState extends State<Login> {
             ),
           ),
           ListView(
-          padding: const EdgeInsets.all(16.0),
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0,horizontal: 24),
+              child: Center(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: 15),
                   Center(
@@ -81,7 +83,14 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 CustomText(
-                  text: "Login to your \naccount.",
+                  text: "Welcome to",
+                  fontStyle: null,
+                  color: Colors.black87,
+                  fontweigth: FontWeight.bold,
+                  fontSize: 40,
+                ),
+                CustomText(
+                  text: "Quizzy",
                   fontStyle: null,
                   color: Colors.black87,
                   fontweigth: FontWeight.bold,
@@ -96,13 +105,6 @@ class _LoginState extends State<Login> {
                   fontSize: 16,
                 ),
                 SizedBox(height: 10),
-                CustomText(
-                  text: "Email Address",
-                  fontStyle: null,
-                  color: Colors.black,
-                  fontweigth: null,
-                  fontSize: 16,
-                ),
                 SizedBox(height: 5),
                 TextField(
                   onChanged: (value) => email = value,
@@ -113,24 +115,13 @@ class _LoginState extends State<Login> {
                       filled: true,
                       hintStyle: const TextStyle(color: Colors.grey),
                       prefixIcon: const Icon(Icons.mail),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.transparent),
-                        ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.transparent),
-                        ),
+                      border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide.none,
+                          ),
                     ),
                 ),
                 SizedBox(height: 10),
-                CustomText(
-                  text: "Password",
-                  fontStyle: null,
-                  color: Colors.black,
-                  fontweigth: null,
-                  fontSize: 16,
-                ),
                 SizedBox(height: 5),
                 TextField(
                   onChanged: (value) => password = value,
@@ -141,15 +132,11 @@ class _LoginState extends State<Login> {
                       filled: true,
                       hintText: 'Password',
                       hintStyle: const TextStyle(color: Colors.grey),
-                      prefixIcon: Icon(Icons.key),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.transparent),
-                        ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.transparent),
-                        ),
+                      prefixIcon: Icon(Icons.lock),
+                      border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide.none,
+                          ),
                       suffixIcon: IconButton(
                         icon: Icon(
                           _obscureText
@@ -232,6 +219,8 @@ class _LoginState extends State<Login> {
                   )
               ],
             ),
+              ),
+          )
         ]),
       ]
       ),

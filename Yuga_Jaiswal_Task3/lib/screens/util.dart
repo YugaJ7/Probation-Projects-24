@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:google_fonts/google_fonts.dart';
+
 class CustomText extends StatelessWidget {
   final String text;
   final Color? color;
@@ -20,11 +22,13 @@ class CustomText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(
+      style: GoogleFonts.mulish(
+        textStyle: TextStyle(
           color: color ?? Colors.white,
           fontSize: fontSize ?? 10,
           fontStyle: fontStyle ?? FontStyle.normal,
           fontWeight: fontweigth),
+      )
     );
   }
 }

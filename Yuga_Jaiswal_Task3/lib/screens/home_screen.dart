@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quiz_app/screens/profile.dart';
 import 'package:quiz_app/screens/quiz_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -91,9 +92,14 @@ class _HomePageState extends State<HomeScreen> {
                         ),
                       ),
                       IconButton(
-                        icon: Icon(Icons.logout, color: Colors.grey),
-                        onPressed: () async {
-                          await FirebaseAuth.instance.signOut();
+                        icon: Icon(Icons.person, color: Colors.grey),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProfileScreen(username: username),
+                            ),
+                          );
                         },
                       ),
                     ],
