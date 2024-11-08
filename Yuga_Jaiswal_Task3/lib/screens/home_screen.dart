@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomePageState extends State<HomeScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  String username = '';
+  String username = 'Loading...';
 
   final List<String> categories = ["Mathematics","General","Language","Geography","Music","Entertainment"];
   IconData getCategoryIcon(int index) {
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomeScreen> {
                         ),
                       ),
                       IconButton(
-                        icon: Icon(Icons.person, color: Colors.grey),
+                        icon: Icon(FontAwesomeIcons.solidCircleUser, color: Color(0xFF6A5AE0), size: 50,),
                         onPressed: () {
                           Navigator.push(
                             context,

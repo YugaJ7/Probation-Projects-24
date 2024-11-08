@@ -347,12 +347,22 @@ Future<void> checkAnswer(String selectedAnswer) async {
           ),
           ],
         )
-   );     
+   );    
 }
 @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: option.length!=4?Center(child: CircularProgressIndicator(),):Container(
+      body: option.length!=4?Center(child: Container(
+        height: MediaQuery.of(context).size.height,
+        width:  MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(color:Color.fromARGB(255, 56, 124, 225) ),
+        child: Center(
+          child: CircularProgressIndicator(
+            //backgroundColor: Color.fromARGB(255, 56, 124, 225),
+            color: Color.fromARGB(255, 17, 81, 177),),
+        )
+          )
+          ):Container(
       child: Stack(
         children: [
           Container(
