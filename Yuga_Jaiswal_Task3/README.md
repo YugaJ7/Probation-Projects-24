@@ -1,16 +1,11 @@
 # Quizzy
 
-A new Flutter project.
+A fun and educational quiz game app built with Flutter! This app allows users to test their knowledge across various categories, with scores tracked and saved to enhance the competitive spirit.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Multiple Quiz Categories: Users can choose from different categories, each navigating to a unique page that displays quiz questions from an API.
+High Score Tracking: Firebase integration allows users to save their highest scores for each category.
+User Authentication: Secure login and registration using Appwrite, with support for password recovery.
