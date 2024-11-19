@@ -200,25 +200,25 @@ Future <void> register() async{
                         ),
                       ),
                   SizedBox(height: 15),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Or sign in with',style: TextStyle(fontSize: 15,color: Colors.black)),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Image.asset(
-                                'assets/g.png', 
-                                width: 60,  
-                                height: 50,
-                              ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Text('Or sign in with',style: TextStyle(fontSize: 15,color: Colors.black)),
+                  //   ],
+                  // ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     IconButton(
+                  //       onPressed: () {},
+                  //       icon: Image.asset(
+                  //               'assets/g.png', 
+                  //               width: 60,  
+                  //               height: 50,
+                  //             ),
+                  //     ),
+                  //   ],
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

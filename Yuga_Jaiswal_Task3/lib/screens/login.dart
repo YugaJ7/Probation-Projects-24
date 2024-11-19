@@ -178,25 +178,6 @@ class _LoginState extends State<Login> {
                   SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Or sign in with',style: TextStyle(fontSize: 15,color: Colors.black)),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Image.asset(
-                          'assets/g.png', 
-                          width: 60,  
-                          height: 60,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text("Don't have an account?",style: TextStyle(fontSize: 15,color: Colors.black)),
