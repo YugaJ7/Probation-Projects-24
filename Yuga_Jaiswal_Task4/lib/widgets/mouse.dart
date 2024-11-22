@@ -60,7 +60,7 @@ class _OverlayAnimatedGridElementState extends State<OverlayAnimatedGridElement>
                     //scale: 1.5,
                     //color: isPressed ? Colors.red : Colors.transparent, // Change color on press
                   ):Image.asset(
-                    'assets/tile1_hover.png',
+                    'food.png',
                     //scale: 1.5,
                     //color: isPressed ? Colors.red : Colors.transparent, // Change color on press
                   ),

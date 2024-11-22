@@ -1,57 +1,87 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:yuga_portfolio/widgets/mouse.dart';
 
-class MyServicesSection extends StatelessWidget {
-  const MyServicesSection({super.key});
+class MyProject extends StatelessWidget {
+  const MyProject({super.key});
+  void _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        bool isSmallScreen = constraints.maxWidth < 700;
+        final screenWidth = MediaQuery.of(context).size.width;
+      return Container(
+        child: Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.6,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                image: const DecorationImage(
+                  image: AssetImage('back.png'),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(30),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "My Projects",
+                    style: TextStyle(
+                      color: const Color(0xFFFD853A),
+                      fontSize: isSmallScreen? screenWidth * 0.07:32,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: const [
+                        project(image: 'food.png'),
+                        project(image: 'quiz.png'),
+                        project(image: 'todo.png')
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );}
+    );
+  }
+}
+
+class project extends StatelessWidget {
+  final String image;
+  const project({super.key, required this.image});
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
-    return Container(
-      child: Stack(
-        children: [
-          // Background Image
-          Container(
-            height: MediaQuery.of(context).size.height * 0.9,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                image: AssetImage('back.png'),
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.circular(50),
-            ),
+    return GestureDetector(
+      onTap: (){},
+      child: Center(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50)
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(60, 70, 70, 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "My Services",
-                  style: TextStyle(
-                    color: const Color(0xFFFD853A),
-                    fontSize: screenWidth * 0.05,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 30),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      OverlayAnimatedGridElement('assets/tile1.png'),
-                      //OverlayAnimatedGridElement('assets/tile2.png'),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          height: 300,
+          width: 300,
+          child: Image.asset(image),
+        ),
       ),
     );
   }

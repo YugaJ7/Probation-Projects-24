@@ -4,24 +4,33 @@ import 'package:yuga_portfolio/widgets/responsive.dart';
 class Navbar extends StatelessWidget {
   const Navbar({super.key});
 
+  // Navigation items
+  final List<String> navItems = const [
+    "Home",
+    "About",
+    "Education",
+    "Skills",
+    "Projects",
+    "Profile",
+    "Contact"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
-      mobile: _buildMobileNavbar(),
-      desktop: _buildDesktopNavbar(context),
-    );
-  }
-
-  Widget _buildMobileNavbar() {
-    return AppBar(
-      backgroundColor: Colors.black,
-      elevation: 0,
-      leading: IconButton(
-        icon: const Icon(Icons.menu),
-        onPressed: () {
-          
-        },
+      mobile: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {
+              Scaffold.of(context).openDrawer(); // Open the drawer
+            },
+          ),
+        ),
       ),
+      desktop: _buildDesktopNavbar(context),
     );
   }
 
@@ -29,7 +38,7 @@ class Navbar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 60.0),
       child: Container(
-        width: double.infinity, // Ensures full-width navbar
+        width: 930,
         height: MediaQuery.of(context).size.height * 0.09,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
@@ -39,15 +48,9 @@ class Navbar extends StatelessWidget {
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
-            children: [
-              _buildNavbarItem("Home", true),
-              _buildNavbarItem("About", false),
-              _buildNavbarItem("Service", false),
-              _buildNavbarItem("Resume", false),
-              _buildNavbarItem("Porfile", false),
-              _buildNavbarItem("Contact", false),
-            ],
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children:
+                navItems.map((item) => _buildNavbarItem(item, false)).toList(),
           ),
         ),
       ),
@@ -66,12 +69,14 @@ class Navbar extends StatelessWidget {
               duration: const Duration(milliseconds: 300),
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               decoration: BoxDecoration(
-                color: isHovered || isActive ? Color(0xFFFD853A) : Colors.black,
+                color: isHovered || isActive
+                    ? const Color(0xFFFD853A)
+                    : Colors.black,
                 borderRadius: BorderRadius.circular(30),
               ),
               child: TextButton(
                 onPressed: () {
-                  
+                  // Define onPressed actions if needed
                 },
                 child: Text(
                   title,

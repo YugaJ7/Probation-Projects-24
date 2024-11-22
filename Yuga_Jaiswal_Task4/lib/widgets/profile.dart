@@ -46,71 +46,75 @@ class _ProfileSectionState extends State<ProfileSection> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     print(screenWidth);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text( 
-            "Let's have a look ",
-            style: TextStyle(
-              fontSize: MediaQuery.of(context).size.width*0.03,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'SemiBold',
-              color: Color(0xFF344054)
-            ),
-          ),
-          const SizedBox(height: 8),
-          RichText(
-            text: TextSpan(
+    return LayoutBuilder(
+      builder: (context, constraints){
+        bool isMobile = constraints.maxWidth <= 700;
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text( 
+              "Let's have a look ",
               style: TextStyle(
-                fontSize: MediaQuery.of(context).size.width*0.03,
+                fontSize: isMobile?screenWidth*0.07:36,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'SemiBold',
+                color: Color(0xFF344054)
               ),
-              children: const [
-                TextSpan(
-                  text: 'at my ',
-                  style: TextStyle(color: Color(0xFF344054)),
-                ),
-                TextSpan(
-                  text: 'Portfolio',
-                  style: TextStyle(color: Color(0xFFFD853A)),
-                ),
-              ],
             ),
-          ),
-          const SizedBox(height: 24),
-          screenWidth >= 1500
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: List.generate(titles.length, (index) {
-                    return _buildPortfolioCard(
-                      titles[index],
-                      images[index],
-                      urls[index],
-                      index,
-                    );
-                  }),
-                )
-              : SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
+            const SizedBox(height: 8),
+            RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  fontSize: isMobile?screenWidth*0.07:36,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'SemiBold',
+                ),
+                children: const [
+                  TextSpan(
+                    text: 'at my ',
+                    style: TextStyle(color: Color(0xFF344054)),
+                  ),
+                  TextSpan(
+                    text: 'Portfolio',
+                    style: TextStyle(color: Color(0xFFFD853A)),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 24),
+            screenWidth >= 1500
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: List.generate(titles.length, (index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: _buildPortfolioCard(
-                          titles[index],
-                          images[index],
-                          urls[index],
-                          index,
-                        ),
+                      return _buildPortfolioCard(
+                        titles[index],
+                        images[index],
+                        urls[index],
+                        index,
                       );
                     }),
+                  )
+                : SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(titles.length, (index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: _buildPortfolioCard(
+                            titles[index],
+                            images[index],
+                            urls[index],
+                            index,
+                          ),
+                        );
+                      }),
+                    ),
                   ),
-                ),
-        ],
-      ),
+          ],
+        ),
+      );}
     );
   }
   Widget _buildPortfolioCard(String title, String image, String url, int index) {

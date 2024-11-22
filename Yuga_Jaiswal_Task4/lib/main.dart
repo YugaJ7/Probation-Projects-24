@@ -5,7 +5,6 @@ void main()
 {
   return runApp(
     MaterialApp(
-      //theme: ThemeData(primarySwatch: Colors.orange),
       debugShowCheckedModeBanner: false,
       initialRoute: '/dashboard',
       routes:

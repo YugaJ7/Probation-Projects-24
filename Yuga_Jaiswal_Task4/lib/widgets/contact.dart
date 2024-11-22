@@ -212,158 +212,184 @@ class FooterSection extends StatelessWidget {
   }
 
   List<Widget> _buildFooterContentMobile() {
-    return [
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Row(
-            children: [
-              CircleAvatar(
-                backgroundColor: Color(0xFFFD853A),
-                radius: 20,
-                child: Text(
-                  "YJ",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              SizedBox(width: 10),
-              Text(
-                "YUGA JAISWAL",
+  return [
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: Color(0xFFFD853A),
+              radius: 20,
+              child: Text(
+                "YJ",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 18,
-                  fontFamily: 'Medium',
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          const Text(
-            "I believe great things happen when people collaborate, and I’m always excited to meet new people. Whether you're interested in working together on a project, have a question, or just want to share ideas, feel free to reach out.",
-            style: TextStyle(color: Colors.grey,fontFamily: 'Regular'),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              IconButton(icon: const ImageIcon(AssetImage('facebook.png')), color: Colors.white, onPressed: () {_launchURL('https://www.facebook.com/login/');},),
-              const SizedBox(width: 10),
-              const Icon(Icons.youtube_searched_for, color: Colors.white),
-              const SizedBox(width: 10),
-              // Icon(Icons.whatsapp, color: Colors.white),
-              // SizedBox(width: 10),
-              // Icon(Icons.twitter, color: Colors.white),
-            ],
-          ),
-        ],
-      ),
-      const SizedBox(height: 20),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "Navigation",
-            style: TextStyle(
-              color: Color(0xFFFD853A),
-              fontSize: 16,
-              fontFamily: 'SemiBold'
             ),
-          ),
-          const SizedBox(height: 10),
-          Row(
-              children: [
-                _footerLink("Home"),
-                const SizedBox(width: 10,),
-                _footerLink("About Us"),
-                const SizedBox(width: 10,),
-                _footerLink("Service"),
-                const SizedBox(width: 10,),
-                _footerLink("Resume"),
-                const SizedBox(width: 10,),
-                _footerLink("Project"),
-              ],
-            )
-        ],
-      ),
-      const SizedBox(height: 15),
-      const Expanded(
-        flex: 1,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+            SizedBox(width: 10),
             Text(
-              "Contact",
+              "YUGA JAISWAL",
               style: TextStyle(
-                color: Color(0xFFFD853A),
-                fontSize: 16,
-                fontFamily: 'SemiBold'
+                color: Colors.white,
+                fontSize: 18,
+                fontFamily: 'Medium',
               ),
             ),
-            SizedBox(height: 10),
-            Text("+91 8090822729",
-            style: TextStyle(
-                color: Colors.grey,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),),
-            SizedBox(height: 10),
-            Text("jaiswal.yuga7@gmail.com",
-            style: TextStyle(
-                color: Colors.grey,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),),
           ],
         ),
-      ),
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            "Get the latest information",
-            style: TextStyle(
+        const SizedBox(height: 10),
+        const Text(
+          "I believe great things happen when people collaborate, and I’m always excited to meet new people. Whether you're interested in working together on a project, have a question, or just want to share ideas, feel free to reach out.",
+          style: TextStyle(color: Colors.grey, fontFamily: 'Regular'),
+        ),
+        const SizedBox(height: 10),
+        // Using Wrap for mobile layout to prevent overflow
+        Wrap(
+          spacing: 10,  // Space between icons
+          children: [
+            IconButton(
+              icon: const ImageIcon(AssetImage('facebook.png')),
+              color: Colors.white,
+              onPressed: () {
+                _launchURL('https://www.facebook.com/login/');
+              },
+            ),
+            IconButton(
+              icon: const ImageIcon(AssetImage('instagram.png')),
+              color: Colors.white,
+              onPressed: () {
+                _launchURL('https://www.instagram.com/yuga.j7/');
+              },
+            ),
+            IconButton(
+              icon: const ImageIcon(AssetImage('x.png')),
+              color: Colors.white,
+              onPressed: () {
+                _launchURL('https://x.com/yugaj7');
+              },
+            ),
+            IconButton(
+              icon: const ImageIcon(AssetImage('mail.png')),
+              color: Colors.white,
+              onPressed: () {
+                _launchURL('https://workspace.google.com/intl/en-US/gmail/');
+              },
+            ),
+          ],
+        ),
+      ],
+    ),
+    const SizedBox(height: 20),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "Navigation",
+          style: TextStyle(
               color: Color(0xFFFD853A),
               fontSize: 16,
-              fontFamily: 'SemiBold'
-            ),
+              fontFamily: 'SemiBold'),
+        ),
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            _footerLink("Home"),
+            const SizedBox(width: 10),
+            _footerLink("About Us"),
+            const SizedBox(width: 10),
+            _footerLink("Service"),
+            const SizedBox(width: 10),
+            _footerLink("Resume"),
+            const SizedBox(width: 10),
+            _footerLink("Project"),
+          ],
+        ),
+      ],
+    ),
+    const SizedBox(height: 15),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "Contact",
+          style: TextStyle(
+            color: Color(0xFFFD853A),
+            fontSize: 16,
+            fontFamily: 'SemiBold',
           ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  style: const TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    hintText: "Email Address",
-                    hintStyle: const TextStyle(color: Colors.black, fontFamily: 'Regular'),
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide.none,
-                    ),
+        ),
+        const SizedBox(height: 10),
+        const Text(
+          "+91 8090822729",
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 10),
+        const Text(
+          "jaiswal.yuga7@gmail.com",
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    ),
+    const SizedBox(height: 10),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          "Get the latest information",
+          style: TextStyle(
+            color: Color(0xFFFD853A),
+            fontSize: 16,
+            fontFamily: 'SemiBold',
+          ),
+        ),
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            Expanded(
+              child: TextField(
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: "Email Address",
+                  hintStyle: const TextStyle(
+                      color: Colors.black, fontFamily: 'Regular'),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide.none,
                   ),
                 ),
               ),
-              const SizedBox(width: 10),
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFD853A),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.arrow_forward, color: Colors.white),
-                  onPressed: () {},
-                ),
+            ),
+            const SizedBox(width: 10),
+            Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFFFD853A),
+                borderRadius: BorderRadius.circular(20),
               ),
-            ],
-          ),
-        ],
-      ),
-    ];
-  }
+              child: IconButton(
+                icon: const Icon(Icons.arrow_forward, color: Colors.white),
+                onPressed: () {},
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
+  ];
+}
+
 
   Widget _footerLink(String text) {
     return Padding(
